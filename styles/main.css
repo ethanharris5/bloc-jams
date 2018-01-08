@@ -47,21 +47,26 @@ html {
     height: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
-    /* #3 */
+
     vertical-align: middle;
     color: white;
     font-size: 0.625rem;
     letter-spacing: 0.05rem;
     font-weight: 700;
     text-transform: uppercase;
-    /* #4 */
+
     text-decoration: none;
     cursor: pointer;
 }
 
-  /* #5 */
+
 .links-container .navbar-link:hover {
     color: rgb(233,50,117);
+}
+
+.links-container .navbar-link:active {
+  color: rgb(233,50,117);
+  background-color: white;
 }
   }
 
