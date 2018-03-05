@@ -111,7 +111,7 @@ var getSongItem = function(element) {
 };
 
 var clickHandler = function(targetElement) {
- };
+
 
   var songItem = getSongItem(targetElement);
 
@@ -129,7 +129,7 @@ var clickHandler = function(targetElement) {
            songItem.innerHTML = pauseButtonTemplate;
            currentlyPlayingSong = songItem.getAttribute('data-song-number');
        }
-
+};
 
 
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
