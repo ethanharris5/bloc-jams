@@ -11,7 +11,10 @@ $( document ).ready(function() {
 
         };
 
+
 $.each($('.point'), revealPoint);
+
+  }; //close animatePoints
 
       $(window).load (function() {
 
@@ -28,5 +31,5 @@ $(window).scroll(function(event) {
             animatePoints();}
                   }); //closes window scroll function
                         }); //close window load function
-                              }; //close animatePoints
+
                             }); // closes document ready function
