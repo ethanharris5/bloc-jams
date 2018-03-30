@@ -213,11 +213,31 @@ var $previousButton = $('.main-controls .previous');
  };
 
 
+ var togglePlayFromPlayerBar= function(){
+   currentSoundFile.togglePlay();
+
+   if (currentSoundFile.isPaused()) {
+
+     $(currentlyPlayingCell).html(pauseButtonTemplate);
+     $(this).html(playerBarPauseButton);
+      }
+
+   else {
+     $(currentlyPlayingCell).html(playButtonTemplate);
+     $(this).html(playerBarPlayButton);
+
+
+   }
+ };
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+
+    var playerControlPlayPause = $('.main-controls .play-pause');
+    playerControlPlayPause.click(togglePlayFromPlayerBar);
+
 
  });
 
