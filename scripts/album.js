@@ -212,7 +212,7 @@ var $previousButton = $('.main-controls .previous');
      $lastSongNumberCell.html(lastSongNumber);
  };
 
-
+// Maybe have to make currentlyPlayingCell a local variable?//
  var togglePlayFromPlayerBar= function(){
    currentSoundFile.togglePlay();
 
