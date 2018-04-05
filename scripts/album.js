@@ -1,3 +1,26 @@
+var setCurrentTimeInPlayerBar = function(currentTime){
+$('.current-time').text(currentTime);
+};
+
+var setTotalTimeInPlayerBar= function(totalTime){
+$('.total-time').text(totalTime);
+};
+
+var filterTimeCode= function(timeInSeconds){
+  parseFloat(timeInSeconds);
+  var wholeMinute= Math.floor(timeInSeconds/60);
+  var wholeSecond= timeInSeconds%60;
+
+   if (wholeSecond<10){
+    return wholeMinute+ ":" + "0"+ wholeSecond
+   }
+  else{
+    return wholeMinute+ ":"+ wholeSecond
+  }
+
+};
+
+
 
 var setSong = function(songNumber) {
 
@@ -141,18 +164,24 @@ var getSongNumberCell = function(number) {
 };
 
 
-var updateSeekBarWhileSongPlays = function() {
-     if (currentSoundFile) {
-         // #10
-         currentSoundFile.bind('timeupdate', function(event) {
-             // #11
-             var seekBarFillRatio = this.getTime() / this.getDuration();
-             var $seekBar = $('.seek-control .seek-bar');
+                                    var updateSeekBarWhileSongPlays = function() {
+                                         if (currentSoundFile) {
+                                             // #10
+                                             currentSoundFile.bind('timeupdate', function(event) {
+                                                 // #11
+                                                 var seekBarFillRatio = this.getTime() / this.getDuration();
+                                                 var $seekBar = $('.seek-control .seek-bar');
 
-             updateSeekPercentage($seekBar, seekBarFillRatio);
-         });
-     }
- };
+                                                 updateSeekPercentage($seekBar, seekBarFillRatio);
+                                                 setCurrentTimeInPlayerBar();
+
+                                                 setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
+
+                                                 setTotalTimeInPlayerBar(filterTimeCode(totalTime));
+
+                                             });
+                                         }
+                                     };
 
 
                 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
@@ -227,6 +256,8 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar();
+
 };
 
 
