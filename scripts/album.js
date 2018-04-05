@@ -9,7 +9,7 @@ $('.total-time').text(totalTime);
 var filterTimeCode= function(timeInSeconds){
   parseFloat(timeInSeconds);
   var wholeMinute= Math.floor(timeInSeconds/60);
-  var wholeSecond= timeInSeconds%60;
+  var wholeSecond= Math.floor(timeInSeconds%60);
 
    if (wholeSecond<10){
     return wholeMinute+ ":" + "0"+ wholeSecond
@@ -179,9 +179,9 @@ var getSongNumberCell = function(number) {
                                                  updateSeekPercentage($seekBar, seekBarFillRatio);
                                                  setCurrentTimeInPlayerBar();
 
-                                                 setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
+                                                 setCurrentTimeInPlayerBar(filterTimeCode(currentSoundFile.getTime()));
 
-                                                 setTotalTimeInPlayerBar(filterTimeCode(totalTime));
+                                                 setTotalTimeInPlayerBar(filterTimeCode(currentSoundFile.getDuration()));
 
                                              });
                                          }
@@ -261,8 +261,10 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
     setTotalTimeInPlayerBar();
-    setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
-    setTotalTimeInPlayerBar(filterTimeCode(totalTime));
+    setCurrentTimeInPlayerBar(filterTimeCode(currentSoundFile.getTime()));
+
+    setTotalTimeInPlayerBar(filterTimeCode(currentSoundFile.getDuration()));
+
 
 };
 
@@ -350,6 +352,7 @@ var $previousButton = $('.main-controls .previous');
 
 // Maybe have to make currentlyPlayingCell a local variable?//
  var togglePlayFromPlayerBar= function(){
+   if (!currentSoundFile) return;
    currentSoundFile.togglePlay();
 
               if (currentSoundFile.isPaused()) {
